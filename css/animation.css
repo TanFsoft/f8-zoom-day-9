@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.group-dots {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    gap: 1rem;
+}
+
+.dot {
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+}
+
+.dot::before,
+.dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #000;
+    opacity: 0.5;
+    transform-origin: center;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    animation: var(--ani) 3.5s infinite linear;
+    animation-delay: calc(var(--start) * 0.5s);
+}
+
+.dot::before {
+    --ani: up;
+}
+.dot::after {
+    --ani: down;
+}
+
+@keyframes up {
+    30% {
+        transform: translateY(-5rem) scale(0.6); 
+        opacity: 0.2;
+    }
+    55% {
+        transform: translateY(-8rem) scale(1); 
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-5rem) scale(1.1); 
+    }
+}
+
+@keyframes down {
+    30% {
+        transform: translateY(5rem) scale(1.2); 
+        opacity: 0.8;
+    }
+    55% {
+        transform: translateY(8rem) scale(0.9); 
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(5rem) scale(0.7); 
+        opacity: 0.5;
+    }
+}
